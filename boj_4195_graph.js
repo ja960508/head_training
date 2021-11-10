@@ -66,6 +66,9 @@ function solution(numOfTestCases) {
       }
 
       union(left, right, parent, network);
+      console.log(parent);
+      console.log(network);
+
       console.log(network[findParent(left, parent)]);
     }
 

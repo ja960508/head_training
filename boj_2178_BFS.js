@@ -1,15 +1,15 @@
-"use strict";
+'use strict';
 
-const fs = require("fs");
+const fs = require('fs');
 const stdin = (
-  process.platform == "linux"
-    ? fs.readFileSync("/dev/stdin").toString()
+  process.platform == 'linux'
+    ? fs.readFileSync('/dev/stdin').toString()
     : `4 6
     110110
     110110
     111111
     111101`
-).split("\n");
+).split('\n');
 
 const input = (() => {
   let line = 0;
@@ -26,12 +26,12 @@ function solution(maze, x, y) {
   while (willVisitRoom.length) {
     let current = willVisitRoom.shift();
 
-    if (maze[current[0]][current[1]] === "0") {
+    if (maze[current[0]][current[1]] === '0') {
       continue;
     }
 
     visitedRoom.push(current);
-    maze[current[0]][current[1]] = "0";
+    maze[current[0]][current[1]] = '0';
 
     if (current[0] == [x - 1] && current[1] == [y - 1]) {
       console.log(current[2]);
@@ -60,12 +60,12 @@ function solution(maze, x, y) {
 }
 
 const [row, column] = input()
-  .split(" ")
+  .split(' ')
   .map((data) => Number(data));
 const maze = new Array(row);
 
 for (let i = 0, elem; i < row; i++) {
-  elem = input().trim().split("");
+  elem = input().trim().split('');
 
   maze[i] = elem;
 }
