@@ -19,25 +19,48 @@ const input = (() => {
 
 const numOfNumbers = Number(input());
 
-// function Qsort(numbers) {
-//   if (numbers.length < 2) {
-//     return numbers;
-//   }
+function mergeSort(numbers) {
+  if (numbers.length < 2) {
+    return numbers;
+  }
 
-//   const pivot = numbers[0];
-//   const left = [];
-//   const right = [];
+  const mid = parseInt(numbers.length / 2);
+  const left = mergeSort(numbers.slice(0, mid));
+  const right = mergeSort(numbers.slice(mid));
+  const result = [];
 
-//   for (let i = 1; i < numbers.length; i++) {
-//     if (numbers[i] < pivot) {
-//       left.push(numbers[i]);
-//     } else {
-//       right.push(numbers[i]);
-//     }
-//   }
+  let i = 0;
+  let j = 0;
+  let k = 0;
 
-//   return Qsort(left).concat(pivot, Qsort(right));
-// }
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      result[k] = left[i];
+      i++;
+    } else {
+      result[k] = right[j];
+      j++;
+    }
+
+    k++;
+  }
+
+  if (i === left.length) {
+    while (j < right.length) {
+      result[k] = right[j];
+      j++;
+      k++;
+    }
+  } else {
+    while (i < left.length) {
+      result[k] = left[i];
+      i++;
+      k++;
+    }
+  }
+
+  return result;
+}
 
 function solution(numOfNumbers) {
   const numbers = [];
@@ -46,7 +69,11 @@ function solution(numOfNumbers) {
     numbers[i] = Number(input());
   }
 
-  console.log(numbers.sort((a, b) => a - b).join('\n'));
+  // console.log(numbers.sort((a, b) => a - b).join('\n'));
+
+  const sortedNumbers = mergeSort(numbers);
+
+  console.log(sortedNumbers.join('\n'));
 }
 
 solution(numOfNumbers);
