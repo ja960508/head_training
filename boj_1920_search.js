@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { start } = require('repl');
 const stdin = (
   process.platform == 'linux'
     ? fs.readFileSync('/dev/stdin').toString()
@@ -14,29 +13,34 @@ const input = (() => {
   return () => stdin[line++];
 })();
 
-const num = input();
-const numbers = input()
-  .trim()
-  .split(' ')
-  .map((data) => Number(data));
-const inputNum = input();
-const inputNumbers = input()
-  .trim()
-  .split(' ')
-  .map((data) => Number(data));
+function solution() {
+  const num = input();
+  let numbers = input()
+    .trim()
+    .split(' ')
+    .map((data) => Number(data));
+  const inputNum = input();
+  const inputNumbers = input()
+    .trim()
+    .split(' ')
+    .map((data) => Number(data));
 
-function solution(numbers, inputNumbers) {
   let start, end;
   numbers = numbers.sort((a, b) => a - b);
-  let answer = new Array(inputNumbers.length).fill(0);
+  let answer = '';
+  let flag;
 
-  for (let i = 0; i < inputNumbers.length; i++) {
+  for (let i = 0; i < inputNum; i++) {
     start = 0;
-    end = numbers.length - 1;
+    end = num - 1;
+    flag = 0;
+
     while (start <= end) {
       mid = Math.floor((start + end) / 2);
+
       if (inputNumbers[i] === numbers[mid]) {
-        answer[i] = 1;
+        answer += '1\n';
+        flag = 1;
         break;
       } else if (inputNumbers[i] < numbers[mid]) {
         end = mid - 1;
@@ -44,9 +48,13 @@ function solution(numbers, inputNumbers) {
         start = mid + 1;
       }
     }
+
+    if (!flag) {
+      answer += '0\n';
+    }
   }
 
-  answer.map((data) => console.log(data));
+  console.log(answer);
 }
 
-solution(numbers, inputNumbers);
+solution();

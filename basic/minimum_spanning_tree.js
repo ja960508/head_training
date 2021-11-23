@@ -47,6 +47,7 @@ class Kruskal {
       this.parent[root1] = root0;
     } else {
       this.parent[root0] = root1;
+
       if (this.rank[root0] === this.rank[root1]) {
         this.rank[root1] += 1;
       }
@@ -71,25 +72,18 @@ class Kruskal {
   }
 }
 
-class Prim {
-  constructor(nodes) {
-    this.vertices = nodes;
-    this.edges = [];
-  }
-}
-
-const kruskal = new Kruskal(["A", "B", "C", "D", "E", "F", "G"]);
-kruskal.insert(new Node(7, "A", "B"));
-kruskal.insert(new Node(5, "A", "D"));
-kruskal.insert(new Node(8, "B", "C"));
-kruskal.insert(new Node(9, "B", "D"));
-kruskal.insert(new Node(7, "B", "E"));
-kruskal.insert(new Node(5, "C", "E"));
-kruskal.insert(new Node(7, "D", "E"));
-kruskal.insert(new Node(6, "D", "F"));
-kruskal.insert(new Node(8, "E", "F"));
-kruskal.insert(new Node(9, "E", "G"));
-kruskal.insert(new Node(11, "F", "G"));
+const kruskal = new Kruskal(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
+kruskal.insert(new Node(7, 'A', 'B'));
+kruskal.insert(new Node(5, 'A', 'D'));
+kruskal.insert(new Node(8, 'B', 'C'));
+kruskal.insert(new Node(9, 'B', 'D'));
+kruskal.insert(new Node(7, 'B', 'E'));
+kruskal.insert(new Node(5, 'C', 'E'));
+kruskal.insert(new Node(7, 'D', 'E'));
+kruskal.insert(new Node(6, 'D', 'F'));
+kruskal.insert(new Node(8, 'E', 'F'));
+kruskal.insert(new Node(9, 'E', 'G'));
+kruskal.insert(new Node(11, 'F', 'G'));
 
 kruskal.init();
 kruskal.mst();
