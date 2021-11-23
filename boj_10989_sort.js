@@ -1,12 +1,12 @@
 // counting sort
 // unsolved, memory exceeded
 
-"use strict";
+'use strict';
 
-const fs = require("fs");
+const fs = require('fs');
 const stdin = (
-  process.platform == "linux"
-    ? fs.readFileSync("/dev/stdin").toString()
+  process.platform == 'linux'
+    ? fs.readFileSync('/dev/stdin').toString()
     : `10
     5
     2
@@ -18,7 +18,7 @@ const stdin = (
     5
     1
     7`
-).split("\n");
+).split('\n');
 
 const input = (() => {
   let line = 0;
@@ -27,7 +27,7 @@ const input = (() => {
 
 function solution(numOfCases) {
   const numbers = new Array(numOfCases).fill(0);
-  let result = "";
+  let result = '';
 
   for (let i = 0; i < numOfCases; i++) {
     numbers[Number(input().trim()) - 1]++;
