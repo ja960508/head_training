@@ -1,18 +1,21 @@
+'use strict';
+
 function solution(input) {
-  input = input.map((data) => data.split(''));
-  const [input0, input1] = input;
-  const dp = [];
+  input = input.map((data) => data.trim().split(''));
+  const input0 = input[0];
+  const input1 = input[1];
 
-  input0.unshift(undefined);
-  input1.unshift(undefined);
+  const dp = Array.from(Array(input0.length + 1), () => Array());
 
-  for (let i = 0; i < input1.length; i++) {
-    dp.push(new Array(input0.length).fill(0));
+  for (let i = 0; i <= input0.length; i++) {
+    for (let j = 0; j <= input1.length; j++) {
+      dp[i][j] = 0;
+    }
   }
 
-  for (let i = 1; i < input0.length; i++) {
-    for (let j = 1; j < input1.length; j++) {
-      if (input0[i] === input1[j]) {
+  for (let i = 1; i <= input0.length; i++) {
+    for (let j = 1; j <= input1.length; j++) {
+      if (input0[i - 1] === input1[j - 1]) {
         dp[i][j] = dp[i - 1][j - 1] + 1;
       } else {
         dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
@@ -20,7 +23,7 @@ function solution(input) {
     }
   }
 
-  console.log(dp);
+  console.log(dp[input0.length][input1.length]);
 }
 
 function initBOJ() {
