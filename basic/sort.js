@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const numbers = [];
 
@@ -41,11 +41,14 @@ function selectionSort(numbers) {
 }
 
 function insertionSort(numbers) {
-  for (let i = 0; i < numbers.length; i++) {
-    for (let j = i + 1; j > 0; j--) {
-      if (numbers[j] < numbers[j - 1]) {
-        [numbers[j], numbers[j - 1]] = [numbers[j - 1], numbers[j]];
-      }
+  for (let i = 1; i < numbers.length; i++) {
+    let current = numbers[i];
+    let left = i - 1;
+
+    while (left >= 0 && numbers[left] > current) {
+      [numbers[left + 1], numbers[left]] = [numbers[left], numbers[left + 1]];
+      current = numbers[left];
+      left--;
     }
   }
 
@@ -113,4 +116,4 @@ function mergeSort(numbers) {
 
 getRandomNumber(100, 100, numbers);
 
-console.log(mergeSort(numbers));
+console.log(insertionSort(numbers));
