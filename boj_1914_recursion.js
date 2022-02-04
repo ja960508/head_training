@@ -10,26 +10,30 @@ const input = (function () {
   return () => stdin[line++];
 })();
 
-let counter = 0;
-let log = '';
+let log = [];
 const max = Number(input());
 
 function solution(n, start, to, by) {
-  counter++;
   if (n < 2) {
-    if (max <= 20) {
-      log += `${start} ${to}\n`;
-    }
+    log.push(`${start} ${to}`);
     return;
   } else {
     solution(n - 1, start, by, to);
-    if (max <= 20) {
-      log += `${start} ${to}\n`;
-    }
+    log.push(`${start} ${to}`);
     solution(n - 1, by, to, start);
   }
 }
 
-solution(max, 1, 3, 2);
-console.log(counter);
-max <= 20 && console.log(log);
+function hanoi(n) {
+  if (n < 2) {
+    return 1;
+  }
+
+  return 1 + 2 * hanoi(n - 1);
+}
+
+console.log(hanoi(max));
+if (max <= 20) {
+  solution(max, 1, 3, 2);
+  console.log(log.join('\n'));
+}
