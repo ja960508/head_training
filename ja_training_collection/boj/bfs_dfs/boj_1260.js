@@ -36,28 +36,36 @@ function BFS(graph, startNode) {
   console.log(visitedQ.join(' '));
 }
 
+const visitedQ = [];
+
 function DFS(graph, startNode) {
-  const visitedQ = [];
-  const willVisitQ = [];
-  let temp = [];
-  // using for left first search
-  willVisitQ.push(Number(startNode));
+  // const visitedQ = [];
+  // const willVisitQ = [];
+  // let temp = [];
+  // // using for left first search
+  // willVisitQ.push(Number(startNode));
 
-  while (willVisitQ.length) {
-    temp = [];
-    const current = willVisitQ.pop();
+  // while (willVisitQ.length) {
+  //   temp = [];
+  //   const current = willVisitQ.pop();
 
-    if (visitedQ.includes(current)) continue;
+  //   if (visitedQ.includes(current)) continue;
 
-    visitedQ.push(current);
+  //   visitedQ.push(current);
 
-    if (graph[current]) {
-      graph[current].map((data) => temp.push(data));
-    }
-    temp.reverse().map((data) => willVisitQ.push(data));
+  //   if (graph[current]) {
+  //     graph[current].map((data) => temp.push(data));
+  //   }
+  //   temp.reverse().map((data) => willVisitQ.push(data));
+  // }
+
+  // console.log(visitedQ.join(' '));
+  visitedQ.push(startNode);
+  console.log(startNode);
+
+  for (let node of graph[startNode]) {
+    if (!visitedQ.includes(node)) DFS(graph, node);
   }
-
-  console.log(visitedQ.join(' '));
 }
 
 function solution(numOfNodes, numOfEdges, startNode) {
@@ -88,4 +96,4 @@ function solution(numOfNodes, numOfEdges, startNode) {
 
 const [numOfNodes, numOfEdges, startNode] = input().split(' ');
 
-solution(numOfNodes, numOfEdges, startNode);
+solution(numOfNodes, numOfEdges, Number(startNode));
