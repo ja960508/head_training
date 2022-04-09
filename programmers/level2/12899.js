@@ -1,5 +1,5 @@
 function solution(n) {
-  let converted = n.toString(3).split("").map(Number);
+  let converted = n.toString(3).split('').map(Number);
 
   for (let i = converted.length - 1; i >= 1; i--) {
     if (converted[i] <= 0) {
@@ -9,13 +9,13 @@ function solution(n) {
   }
 
   converted = converted.map((c) => {
-    if (!c) return "";
+    if (!c) return '';
     if (c === 3) return 4;
 
     return c;
   });
 
-  return converted.join("");
+  return converted.join('');
 }
 
 const n = 9;
